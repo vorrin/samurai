@@ -79,7 +79,12 @@ public class Appletest : MonoBehaviour {
 		Debug.Log("GHT");
 		animation.enabled = false;
 		Vector3 baseVector = Camera.mainCamera.transform.forward;
-		baseVector = new Vector3( Random.Range(-0.7F,0.7F)  ,Random.Range(-0.2F,1.2F) * 1 ,Random.Range(0.7F,1.3F) * 1); 
+		//baseVector = new Vector3( Random.Range(-0.7F,0.7F)  ,Random.Range(-0.2F,1.2F) * 1 ,Random.Range(0.7F,1.3F) * 1); 
+		Vector3 worldMousePos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, andom.Range(0.7F,1.3F) * 1));
+		Ray ray = new Ray(Camera.mainCamera.transform.position,  new Vector3( worldMousePos.x  ,worldMousePos.y,20));
+		
+//		baseVector = new Vector3( Input.mousePosition.x  ,Input.mousePosition.y ,Random.Range(0.7F,1.3F) * 1); 
+		baseVector = worldMousePos;//new Vector3( worldMousePos.x  ,worldMousePos.y,20);
 		Debug.Log(baseVector);
 		rigidbody.AddForce( baseVector * 1000);
 		
@@ -103,3 +108,4 @@ public class Appletest : MonoBehaviour {
 	
 	
 }
+
