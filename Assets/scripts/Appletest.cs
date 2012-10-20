@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Appletest : MonoBehaviour {
 	public AnimationCurve heightCurve;
 	public AnimationCurve curve;
-	private Vector3 cameraPoint; 
+	private Vector3 hitPoint; 
 	private Vector3 startingPoint;
 	private Vector3 destVect;
 	float distance;
@@ -13,12 +13,14 @@ public class Appletest : MonoBehaviour {
 	public God god;
 	public float distanceTimeCoefficent = 3; 
 	private float ownTime;
+	public Transform pointToHit;
 	//private float timeCoefficent;
 	
 	// Use this for initialization
 	void Start () {
 		god = (God) FindObjectOfType(typeof(God));
-		cameraPoint = Camera.mainCamera.transform.position;
+		if (pointToHit) hitPoint = pointToHit;
+		else hitPoint = Camera.mainCamera.transform.position;
 		Reset();
 		
 		
@@ -101,7 +103,7 @@ public class Appletest : MonoBehaviour {
 	public void Reset(){
 		transform.position = new Vector3(Random.Range(-6.5F,6.5F),Random.Range(0.25F,2.7F),Random.Range(-2.3F,1.5F));
 		startingPoint = transform.position;
-		destVect = cameraPoint - startingPoint;
+		destVect = hitPoint - startingPoint;
 		distance = destVect.magnitude;
 		flyingTime = distance/distanceTimeCoefficent;
 
