@@ -1,0 +1,7 @@
+#Unity Version 3.5.x Ignores
+/*
+!.gitignore
+!/Assets/
+!/ProjectSettings/
+.DS_STORE
+Assets/.DS_Store
