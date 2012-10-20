@@ -13,13 +13,14 @@ public class Appletest : MonoBehaviour {
 	public God god;
 	public float distanceTimeCoefficent = 3; 
 	private float ownTime;
-	public Transform pointToHit;
+	public GameObject pointToHit;
 	//private float timeCoefficent;
 	
 	// Use this for initialization
 	void Start () {
+		Debug.Log(pointToHit);
 		god = (God) FindObjectOfType(typeof(God));
-		if (pointToHit) hitPoint = pointToHit;
+		if (pointToHit.transform.position != Vector3.zero) hitPoint = pointToHit.transform.position;
 		else hitPoint = Camera.mainCamera.transform.position;
 		Reset();
 		
@@ -92,8 +93,8 @@ public class Appletest : MonoBehaviour {
 		Debug.Log(baseVector);
 		
 		debugVec = baseVector;
-		
 		rigidbody.AddForce( baseVector);
+		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 		
 		Debug.Log("Camera left and right world space at z = 1.58 " + Camera.mainCamera.ViewportToWorldPoint(new Vector3(0F,0.5F,1.58F)) + " and " + Camera.mainCamera.ViewportToWorldPoint(new Vector3(1F,0.5F,1.58F)));
 		
@@ -101,6 +102,8 @@ public class Appletest : MonoBehaviour {
 	
 	
 	public void Reset(){
+		rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
+
 		transform.position = new Vector3(Random.Range(-6.5F,6.5F),Random.Range(0.25F,2.7F),Random.Range(-2.3F,1.5F));
 		startingPoint = transform.position;
 		destVect = hitPoint - startingPoint;

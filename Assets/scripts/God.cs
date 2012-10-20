@@ -9,7 +9,7 @@ public class God : MonoBehaviour {
 	public AudioClip soso;
 	public AudioClip lose;
 	public Appletest apple;
-	
+	public GameObject omino;
 	
 	// Use this for initialization
 	void Start () {
@@ -24,6 +24,7 @@ public class God : MonoBehaviour {
 
 		if ( Input.GetMouseButtonDown(0)) {
 			timer.BroadcastMessage("Hit");
+			omino.BroadcastMessage("SwingBat");
 		}
 		if ( Input.GetMouseButtonDown(1)) {
 			apple.rigidbody.AddForce(new Vector3(1,100,1));

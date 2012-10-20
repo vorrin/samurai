@@ -158,8 +158,14 @@
      <Compile Include="Assets\Splines\Scripts\SplineClasses\SplineController.cs" />
      <Compile Include="Assets\Splines\Scripts\SplineClasses\SplineNode.cs" />
      <Compile Include="Assets\Splines\Scripts\SplineClasses\SplineTester.cs" />
+     <Compile Include="Assets\iTween\Plugins\iTween.cs" />
+     <Compile Include="Assets\iTween\Sample\MoveSample.cs" />
+     <Compile Include="Assets\iTween\Sample\RotateSample.cs" />
+     <Compile Include="Assets\iTween\Sample\SampleInfo.cs" />
      <Compile Include="Assets\scripts\Appletest.cs" />
      <Compile Include="Assets\scripts\God.cs" />
+     <Compile Include="Assets\scripts\OminoController.cs" />
+     <Compile Include="Assets\scripts\Swing.cs" />
      <Compile Include="Assets\scripts\Timer.cs" />
      <Compile Include="Assets\v21 Postprocessing\Scripts\ColorSeparation.cs" />
      <Compile Include="Assets\v21 Postprocessing\Scripts\Dither.cs" />
@@ -173,6 +179,7 @@
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
+     <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\v21 Postprocessing\Shaders\Dither.shader" />
