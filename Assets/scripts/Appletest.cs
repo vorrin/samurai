@@ -22,11 +22,7 @@ public class Appletest : MonoBehaviour {
 		god = (God) FindObjectOfType(typeof(God));
 		if (pointToHit.transform.position != Vector3.zero) hitPoint = pointToHit.transform.position;
 		else hitPoint = Camera.mainCamera.transform.position;
-		Reset();
-		
-		
-		
-		
+		Reset();	
 	}
 	
 /*	float ResetCurvesToDistance(float distance){
@@ -76,48 +72,45 @@ public class Appletest : MonoBehaviour {
 		Vector3 tmpPos = startingPoint + destVect* curveMoment ;
 		float height = tmpPos.y + (2 * heightMoment);
 		transform.position = new Vector3(tmpPos.x, height, tmpPos.z);		
+		
+		
 	}
 	
 	private Vector3 debugVec = Vector3.zero;
 	
 	public void Hit(){
-		Debug.Log("GHT");
 		animation.enabled = false;
 		Vector3 baseVector = Camera.mainCamera.transform.forward;
-		//baseVector = new Vector3( Random.Range(-0.7F,0.7F)  ,Random.Range(-0.2F,1.2F) * 1 ,Random.Range(0.7F,1.3F) * 1); 
 		Vector3 worldMousePos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
-		//Ray ray = new Ray(Camera.mainCamera.transform.position,  new Vector3( worldMousePos.x  ,worldMousePos.y,1000));
-		
-//		baseVector = new Vector3( Input.mousePosition.x  ,Input.mousePosition.y ,Random.Range(0.7F,1.3F) * 1); 
 		baseVector = ( worldMousePos - Camera.mainCamera.transform.position) * 1000 ;//new Vector3( worldMousePos.x  ,worldMousePos.y,20);
-		Debug.Log(baseVector);
-		
 		debugVec = baseVector;
 		rigidbody.AddForce( baseVector);
-		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-		
-		Debug.Log("Camera left and right world space at z = 1.58 " + Camera.mainCamera.ViewportToWorldPoint(new Vector3(0F,0.5F,1.58F)) + " and " + Camera.mainCamera.ViewportToWorldPoint(new Vector3(1F,0.5F,1.58F)));
-		
+		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;	
 	}
-	
 	
 	public void Reset(){
 		rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
-
-		transform.position = new Vector3(Random.Range(-6.5F,6.5F),Random.Range(0.25F,2.7F),Random.Range(-2.3F,1.5F));
+		Camera mainCam = Camera.mainCamera;
+		float maxZ = 10F;
+		float currentZ = Random.Range(3F,maxZ);
+		Vector3 leftLimit = mainCam.ViewportToWorldPoint(new Vector3(0F,0.5F,currentZ));
+			//DEstinazione - origin = vettore giusto ke guarda da una parte
+		Vector3 rightLimit = mainCam.ViewportToWorldPoint(new Vector3(1F,0.5F,currentZ));
+		Debug.DrawLine(mainCam.transform.position,rightLimit,Color.red,5F);
+		Debug.DrawLine(mainCam.transform.position,leftLimit,Color.red,5F);
+		
+		transform.position = new Vector3(Random.Range(leftLimit.x,rightLimit.x),Random.Range(0.25F,2.7F),currentZ);		
+		
+		
+		//transform.position = new Vector3(Random.Range(-6.5F,6.5F),Random.Range(0.25F,2.7F),Random.Range(-2.3F,1.5F));
 		startingPoint = transform.position;
 		destVect = hitPoint - startingPoint;
 		distance = destVect.magnitude;
 		flyingTime = distance/distanceTimeCoefficent;
-
 		ownTime = 0;
 		god.TempReset(flyingTime);
 		rigidbody.velocity = Vector3.zero;
 		animation.enabled = true;
-		Debug.Log(flyingTime + " hai " + distance);
-
-	}
-	
-	
+	}	
 }
 
